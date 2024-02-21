@@ -1,6 +1,9 @@
 import tkinter as tk
 import requests
+import settings
+from tkinter import messagebox
 
+# Weather API Settings
 def get_weather(city):
     api_key = 'YOUR_API_KEY'  # Replace 'YOUR_API_KEY' with your actual API key
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
@@ -16,15 +19,24 @@ def get_weather(city):
         temp_label['text'] = ''
         desc_label['text'] = ''
 
+
+# Submit Method
 def on_submit():
-    city = city_entry.get()
-    get_weather(city)
+    try:
+        city = city_entry.get()
+        get_weather(city)
+    except:
+        messagebox.showerror("Network Error","Please Connect the Device to Internet")
+
 
 # Create the main window
 root = tk.Tk()
 root.title('Weather App')
+root.configure(bg="Light Blue")
+root.minsize(width=settings.width, height=settings.height)
+root.resizable(False, False)
 
-# Create and pack widgets
+# Create and pack widgets to the Window
 tk.Label(root, text='Enter City:').pack()
 city_entry = tk.Entry(root)
 city_entry.pack()
