@@ -5,13 +5,14 @@ from tkinter import messagebox
 
 # Weather API Settings
 def get_weather(city):
-    api_key = 'YOUR_API_KEY'  # Replace 'YOUR_API_KEY' with your actual API key
+    api_key = settings.API_KEY 
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
     response = requests.get(url)
     weather_data = response.json()
 
     if weather_data['cod'] == 200:
         city_label['text'] = weather_data['name']
+        # country_label['text'] = weather_data['country']
         temp_label['text'] = f'Temperature: {weather_data["main"]["temp"]}°C'
         desc_label['text'] = f'Weather: {weather_data["weather"][0]["description"]}'
     else:
@@ -46,6 +47,9 @@ submit_button.pack()
 
 city_label = tk.Label(root, text='', font=('Arial', 20))
 city_label.pack()
+
+# country_label = tk.Label(root, text='', font=('Arial', 20) )
+# country_label.pack()
 
 temp_label = tk.Label(root, text='')
 temp_label.pack()
