@@ -30,7 +30,7 @@ def on_submit():
         messagebox.showerror("Network Error","Please Connect the Device to Internet")
 
 
-# Create the main window
+# The main window
 root = tk.Tk()
 root.title('Weather App')
 root.configure(bg="Light Blue")
